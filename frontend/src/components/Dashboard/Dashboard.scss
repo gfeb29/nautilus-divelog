@@ -53,8 +53,15 @@
                 background: #EDEDED;
                 border-radius: 5px;
                 font-size: 20px;
+                font-family: 'Lobster', cursive;
                 cursor: pointer;
                 border: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
+                
+                
             }
             .log-button:hover{
                 background-color:#A0C5FA;

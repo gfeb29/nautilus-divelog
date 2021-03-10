@@ -72,8 +72,19 @@
   background: #EDEDED;
   border-radius: 5px;
   font-size: 20px;
+  font-family: 'Lobster', cursive;
   cursor: pointer;
   border: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-decoration: none;
 }
 
 .principal .fondo .title .log-button:hover {
