@@ -8,6 +8,7 @@ const immersionSchema = new Schema({
   duration: Number,
   minimalTemperature: Number,
   immersionNumber: Number,
+  location: String,
   depthsByTime: Object
 
 });

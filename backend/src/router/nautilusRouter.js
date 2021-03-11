@@ -6,7 +6,7 @@ function NautilusRouter() {
 
   router
     .route('/')
-    .get(nautilusController.get);
+    .get(nautilusController.getAllData);
 
   return router;
 }

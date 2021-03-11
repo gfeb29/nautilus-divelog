@@ -1,9 +1,9 @@
-const dataDB = require('../model/immersionModel');
+const Immersion = require('../model/immersionModel');
 
 function getAllData(req, res) {
   const query = {};
 
-  dataDB.find(query, (finddataDBError, dataDBArray) => {
+  Immersion.find(query, (finddataDBError, dataDBArray) => {
     if (finddataDBError) {
       res.status(404);
       res.send('There was an error finding data');
