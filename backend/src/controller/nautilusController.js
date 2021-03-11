@@ -1,4 +1,4 @@
-const dataDB = require('../model/dataModel');
+const dataDB = require('../model/immersionModel');
 
 function getAllData(req, res) {
   const query = {};
