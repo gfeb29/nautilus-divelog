@@ -57,7 +57,11 @@ History.propTypes = {
     immersionNumber: PropTypes.number,
     maxDepth: PropTypes.number,
     duration: PropTypes.number
-  })).isRequired
+  })).isRequired,
+
+  actions: PropTypes.shape({
+    loadImmersions: PropTypes.func.isRequired
+  }).isRequired
 };
 
 function mapDispatchToProps(dispatch) {

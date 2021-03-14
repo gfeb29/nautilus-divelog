@@ -2,9 +2,9 @@ import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import { BrowserRouter } from 'react-router-dom';
-import Dashboard from './Dashboard';
+import Header from './Header';
 
-describe('Given a Dashboard function', () => {
+describe('Given a Header function', () => {
   let container = null;
   beforeEach(() => {
     container = document.createElement('div');
@@ -18,12 +18,12 @@ describe('Given a Dashboard function', () => {
   });
 
   describe('When is invoked', () => {
-    test('Then will dislay a button', () => {
+    test('Then will display a logo', () => {
       act(() => {
-        render(<BrowserRouter><Dashboard /></BrowserRouter>, container);
+        render(<BrowserRouter><Header /></BrowserRouter>, container);
       });
 
-      const cont = container.querySelectorAll('a');
+      const cont = container.querySelectorAll('h5');
 
       expect(cont.length).toBe(1);
     });
