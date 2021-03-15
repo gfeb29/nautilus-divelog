@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -10,7 +9,7 @@ import tossa from '../../img/tossa.jpg';
 import loadImmersions from '../../redux/actions/immersionActions';
 import './History.css';
 
-function History({ actions, immersionHistory }) {
+export function HistoryComponent({ actions, immersionHistory }) {
   useEffect(() => {
     actions.loadImmersions();
   }, []);
@@ -21,7 +20,7 @@ function History({ actions, immersionHistory }) {
       <div className="a">
         <Link to="/navigation" className="DARCLASE">AL MENÚ!!!</Link>
         {immersionHistory && immersionHistory.map((immersion) => (
-          <div className="shadow-card">
+          <div className="shadow-card" key={Math.random()}>
             <img className="photo_profile" src={tossa} alt="photo_profile" />
             <div className="card">
 
@@ -64,16 +63,16 @@ History.propTypes = {
   }).isRequired
 };
 
-function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({ loadImmersions }, dispatch)
   };
 }
 
-function mapStatetoProps(state) {
+export function mapStatetoProps(state) {
   return {
     immersionHistory: state.immersionReducer.immersionHistory
   };
 }
 
-export default connect(mapStatetoProps, mapDispatchToProps)(History);
+export default connect(mapStatetoProps, mapDispatchToProps)(HistoryComponent);
