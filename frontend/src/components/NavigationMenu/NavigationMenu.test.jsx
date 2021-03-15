@@ -2,9 +2,9 @@ import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import { BrowserRouter } from 'react-router-dom';
-import Dashboard from './Dashboard';
+import NavigationMenu from './NavigationMenu';
 
-describe('Given a Dashboard function', () => {
+describe('Gicen a NavigationMenu function', () => {
   let container = null;
   beforeEach(() => {
     container = document.createElement('div');
@@ -18,14 +18,14 @@ describe('Given a Dashboard function', () => {
   });
 
   describe('When is invoked', () => {
-    test('Then will dislay a button', () => {
+    test('Then will display two ancord', () => {
       act(() => {
-        render(<BrowserRouter><Dashboard /></BrowserRouter>, container);
+        render(<BrowserRouter><NavigationMenu /></BrowserRouter>, container);
       });
 
       const cont = container.querySelectorAll('a');
 
-      expect(cont.length).toBe(1);
+      expect(cont.length).toEqual(2);
     });
   });
 });
