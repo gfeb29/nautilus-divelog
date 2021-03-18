@@ -1,5 +1,7 @@
 const immersionModel = require('../model/immersionModel');
-const { getAllData, createImmersion, updateImmersion } = require('./nautilusController');
+const {
+  getAllData, createImmersion, updateImmersion, deleteImmersion
+} = require('./nautilusController');
 
 const Immersion = require('../model/immersionModel');
 
@@ -79,5 +81,63 @@ describe('Given a updateImmersion function', () => {
     await updateImmersion(req, res);
 
     expect(res.json).toHaveBeenCalled();
+  });
+
+  test('Then should call res.json with body', async () => {
+    req = {
+      params: {},
+      body: {
+        immersionParam: '60531536b4fd0238108b6f42'
+      }
+    };
+
+    Immersion.findByIdAndUpdate.mockReturnValueOnce({ exec: jest.fn() });
+
+    await updateImmersion(req, res);
+
+    expect(res.json).toHaveBeenCalled();
+  });
+
+  test('Then should call res.status with value 500', async () => {
+    Immersion.findByIdAndUpdate.mockImplementationOnce(() => {
+      throw new Error();
+    });
+
+    await updateImmersion(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+  });
+});
+
+describe('Given a deleteImmersion', () => {
+  let req;
+  let res;
+  beforeEach(() => {
+    res = {
+      send: jest.fn(),
+      status: jest.fn()
+    };
+
+    req = {
+      params: {}
+
+    };
+  });
+
+  test('Then should call res.send with true', async () => {
+    Immersion.findByIdAndDelete.mockReturnValueOnce({ name: 'fakename' });
+
+    await deleteImmersion(req, res);
+
+    expect(res.send).toHaveBeenCalledWith({ name: 'fakename' });
+  });
+
+  test('Then should call res.status with value 500 ', async () => {
+    Immersion.findByIdAndDelete.mockImplementationOnce(() => {
+      throw new Error();
+    });
+    await deleteImmersion(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
   });
 });
