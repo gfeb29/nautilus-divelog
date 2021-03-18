@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './Usuarios.css';
+import './ImmersionForm.css';
 
-function Usuarios() {
+function ImmersionFrom() {
   const [name, setName] = useState('');
   const [location, setLocation] = useState('');
   const [date, setDate] = useState('');
@@ -251,4 +251,4 @@ function Usuarios() {
   );
 }
 
-export default Usuarios;
+export default ImmersionFrom;

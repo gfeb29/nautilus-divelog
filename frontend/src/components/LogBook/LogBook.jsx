@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Usuarios from '../User-login/Usuario';
+import ImmersionForm from '../Form/ImmersionForm';
 
 // import './LogBook.css';
 
@@ -13,7 +13,7 @@ function LogBook() {
       </div>
 
       <div>
-        <Usuarios />
+        <ImmersionForm />
       </div>
     </>
   );
