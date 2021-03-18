@@ -49,6 +49,8 @@ function Usuarios() {
 
   const FinalEdit = (e) => {
     e.preventDefault();
+    // eslint-disable-next-line no-debugger
+    debugger;
     const edited = list.map((item) => (item.name === name ? { name, immersion } : item));
     setList(edited);
     setEdit(false);
