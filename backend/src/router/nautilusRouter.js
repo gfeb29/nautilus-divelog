@@ -6,7 +6,14 @@ function NautilusRouter() {
 
   router
     .route('/')
-    .get(nautilusController.getAllData);
+    .get(nautilusController.getAllData)
+    .post(nautilusController.createImmersion)
+    .put(nautilusController.updateImmersion);
+
+  router
+    .route('/:immersionParam')
+    .put(nautilusController.updateImmersion)
+    .delete(nautilusController.deleteImmersion);
 
   return router;
 }

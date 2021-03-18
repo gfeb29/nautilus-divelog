@@ -1,0 +1,18 @@
+.users{
+    display: flex;
+    flex-direction: row;
+    
+    .list{
+        width: 300px;
+    }
+
+    .form{
+        width: 300px;
+
+        .form-group{
+            .form-control{
+                margin-bottom: 10px;
+            }
+        }
+    }
+}

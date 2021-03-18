@@ -1,3 +1,4 @@
 export default {
-  immersionReducer: { immersionHistory: [] }
+  immersionReducer: { immersionHistory: [] },
+  user: {}
 };
