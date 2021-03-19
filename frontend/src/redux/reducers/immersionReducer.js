@@ -16,6 +16,10 @@ function immersionReducer(state = { immersionHistory: initialState.immersionHist
     case actionTypes.SAVE_IMMERSION:
       newImmersionHistory = [...state.immersionHistory, action.immersion];
       return { ...state, immersionHistory: newImmersionHistory, immersion: action.data };
+
+    case actionTypes.DELETE_IMMERSION:
+      return state.filter((immersion) => immersion.name !== immersion);
+
     default:
       return state;
   }

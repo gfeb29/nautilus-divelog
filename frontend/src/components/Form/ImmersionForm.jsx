@@ -1,9 +1,12 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { loadImmersions, createImmersion, saveImmersion } from '../../redux/actions/immersionActions';
+import {
+  loadImmersions, createImmersion, saveImmersion
+} from '../../redux/actions/immersionActions';
 import './ImmersionForm.css';
 
 // eslint-disable-next-line react/prop-types
@@ -12,6 +15,7 @@ function ImmersionForm({ actions, immersionHistory }) {
     actions.loadImmersions();
   }, [immersionHistory?.length]);
 
+  const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [location, setLocation] = useState('');
   const [date, setDate] = useState('');
@@ -77,6 +81,7 @@ function ImmersionForm({ actions, immersionHistory }) {
     }
 
     const user = {
+      id,
       name,
       location,
       date,
@@ -104,9 +109,12 @@ function ImmersionForm({ actions, immersionHistory }) {
   // eslint-disable-next-line no-shadow
   // const DeleteImmersion = (name) => {
   //   const filtro = immersionHistory.filter((item) => item.name !== name);
+  //   loadImmersions(filtro);
   // };
 
   const FirstEdit = (object) => {
+    // eslint-disable-next-line no-undef
+    setId(object._id);
     setName(object.name);
     setLocation(object.location);
     setDate(object.date);
@@ -120,8 +128,7 @@ function ImmersionForm({ actions, immersionHistory }) {
 
   const FinalEdit = (e) => {
     e.preventDefault();
-
-    const edited = immersionHistory.map((item) => (item.name === name ? {
+    const edited = {
       name,
       location,
       date,
@@ -130,10 +137,11 @@ function ImmersionForm({ actions, immersionHistory }) {
       duration,
       minimalTemperature,
       immersionNumber,
-      depthsByTime
-    } : item));
+      depthsByTime,
+      id
+    };
+    console.log(edited);
     actions.saveImmersion(edited);
-    // setList(edited);
     setEdit(false);
     setName('');
     setLocation('');
@@ -153,11 +161,12 @@ function ImmersionForm({ actions, immersionHistory }) {
         {immersionHistory && immersionHistory.map((immersion) => (
           <div key={Math.random()}>
             <ul className="immersion">
-              <h4>{immersion.location}</h4>
+              <h4>{immersion?.location}</h4>
               <li>
                 <p>nº inm.</p>
-                <div><span>{immersion.immersionNumber}</span></div>
+                <div><span>{immersion?.immersionNumber}</span></div>
                 <button onClick={() => { FirstEdit(immersion); }} className="" type="button">Editar</button>
+
               </li>
 
             </ul>
@@ -176,6 +185,7 @@ function ImmersionForm({ actions, immersionHistory }) {
             className="form-control"
             type="text"
             placeholder="name"
+            contentEditable={false}
             value={name}
           />
           <input

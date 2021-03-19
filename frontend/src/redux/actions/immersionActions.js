@@ -25,7 +25,7 @@ export function createImmersion(newimmersion) {
 
 export function saveImmersion(newimmersion) {
   return async (dispatch) => {
-    const immersion = await axios.post('http://localhost:5000/api/v1/nautilus', newimmersion);
+    const immersion = await axios.put('http://localhost:5000/api/v1/nautilus', newimmersion);
 
     dispatch({
       type: actionTypes.SAVE_IMMERSION,
@@ -33,3 +33,14 @@ export function saveImmersion(newimmersion) {
     });
   };
 }
+
+// export function deleteImmersion(name) {
+//   return async (dispatch) => {
+//     const immersion = await axios.delete(`http://localhost:5000/api/v1/nautilus/${name}`);
+
+//     dispatch({
+//       type: actionTypes.DELETE_IMMERSION,
+//       immersionId: immersion.name
+//     });
+//   };
+// }
