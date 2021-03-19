@@ -3,21 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { loadImmersions, createImmersion } from '../../redux/actions/immersionActions';
+import { loadImmersions, createImmersion, saveImmersion } from '../../redux/actions/immersionActions';
 import './ImmersionForm.css';
 
 // eslint-disable-next-line react/prop-types
 function ImmersionForm({ actions, immersionHistory }) {
-  // eslint-disable-next-line no-debugger
-  debugger;
-  // eslint-disable-next-line no-console
-  console.log(actions);
-  // eslint-disable-next-line no-console
-  console.log(immersionHistory);
   useEffect(() => {
-    // eslint-disable-next-line react/prop-types
     actions.loadImmersions();
-  }, []);
+  }, [immersionHistory?.length]);
 
   const [name, setName] = useState('');
   const [location, setLocation] = useState('');
@@ -113,32 +106,33 @@ function ImmersionForm({ actions, immersionHistory }) {
   //   const filtro = immersionHistory.filter((item) => item.name !== name);
   // };
 
-  // const FirstEdit = (object) => {
-  //   setName(object.name);
-  //   setLocation(object.location);
-  //   setDate(object.date);
-  //   setTime(object.time);
-  //   setMaxDepth(object.maxDepth);
-  //   setDuration(object.duration);
-  //   setMinimalTemperature(object.minimalTemperature);
-  //   setImmersionNumber(object.immersionNumber);
-  //   setEdit(true);
-  // };
+  const FirstEdit = (object) => {
+    setName(object.name);
+    setLocation(object.location);
+    setDate(object.date);
+    setTime(object.time);
+    setMaxDepth(object.maxDepth);
+    setDuration(object.duration);
+    setMinimalTemperature(object.minimalTemperature);
+    setImmersionNumber(object.immersionNumber);
+    setEdit(true);
+  };
 
   const FinalEdit = (e) => {
     e.preventDefault();
 
-    // const edited = immersionHistory.map((item) => (item.name === name ? {
-    //   name,
-    //   location,
-    //   date,
-    //   time,
-    //   maxDepth,
-    //   duration,
-    //   minimalTemperature,
-    //   immersionNumber,
-    //   depthsByTime
-    // } : item));
+    const edited = immersionHistory.map((item) => (item.name === name ? {
+      name,
+      location,
+      date,
+      time,
+      maxDepth,
+      duration,
+      minimalTemperature,
+      immersionNumber,
+      depthsByTime
+    } : item));
+    actions.saveImmersion(edited);
     // setList(edited);
     setEdit(false);
     setName('');
@@ -155,6 +149,20 @@ function ImmersionForm({ actions, immersionHistory }) {
     <div className="users">
       <div className="list">
         <h2>Listado de Immersiones</h2>
+
+        {immersionHistory && immersionHistory.map((immersion) => (
+          <div key={Math.random()}>
+            <ul className="immersion">
+              <h4>{immersion.location}</h4>
+              <li>
+                <p>nº inm.</p>
+                <div><span>{immersion.immersionNumber}</span></div>
+                <button onClick={() => { FirstEdit(immersion); }} className="" type="button">Editar</button>
+              </li>
+
+            </ul>
+          </div>
+        ))}
 
       </div>
       <div className="form">
@@ -262,14 +270,15 @@ ImmersionForm.protoTypes = {
 
   actions: PropTypes.shape({
     loadImmersions: PropTypes.func.isRequired,
-    createImmersion: PropTypes.func.isRequired
+    createImmersion: PropTypes.func.isRequired,
+    saveImmersion: PropTypes.func.isRequired
   }).isRequired
 
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ loadImmersions, createImmersion }, dispatch)
+    actions: bindActionCreators({ loadImmersions, createImmersion, saveImmersion }, dispatch)
   };
 }
 

@@ -9,7 +9,11 @@
 }
 
 .users .list {
-  width: 300px;
+  width: 200px;
+}
+
+.users .list .immersion {
+  border: solid 1px black;
 }
 
 .users .form {
@@ -19,4 +23,4 @@
 .users .form .form-group .form-control {
   margin-bottom: 10px;
 }
-/*# sourceMappingURL=Usuarios.css.map */
+/*# sourceMappingURL=ImmersionForm.css.map */

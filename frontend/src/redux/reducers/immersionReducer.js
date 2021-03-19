@@ -11,7 +11,11 @@ function immersionReducer(state = { immersionHistory: initialState.immersionHist
 
     case actionTypes.CREATE_IMMERSION:
       newImmersionHistory = [...state.immersionHistory, action.immersion];
-      return { ...state, newImmersionHistory, immersion: action.data };
+      return { ...state, immersionHistory: newImmersionHistory, immersion: action.data };
+
+    case actionTypes.SAVE_IMMERSION:
+      newImmersionHistory = [...state.immersionHistory, action.immersion];
+      return { ...state, immersionHistory: newImmersionHistory, immersion: action.data };
     default:
       return state;
   }
