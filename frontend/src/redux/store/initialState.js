@@ -1,4 +1,5 @@
 export default {
   immersionReducer: { immersionHistory: [] },
-  user: {}
+  immersion: {},
+  user: { IsLoggin: [] }
 };

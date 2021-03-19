@@ -22,10 +22,11 @@ function createImmersion(req, res) {
 }
 
 async function updateImmersion(req, res) {
+  console.log(req.body);
   // eslint-disable-next-line no-underscore-dangle
-  const id = req.params.immersionParam || req.body._id;
+  const id = req.params.immersionParam || req.body.id;
   try {
-    const updateImmersionType = await Immersion.findByIdAndUpdate(id, req.body.type, { new: true });
+    const updateImmersionType = await Immersion.findByIdAndUpdate(id, req.body, { new: true });
     res.json(updateImmersionType);
   } catch (error) {
     res.status(500);
@@ -35,8 +36,13 @@ async function updateImmersion(req, res) {
 
 async function deleteImmersion(req, res) {
   const id = req.params.immersionParam;
-  const deleted = await Immersion.findByIdAndDelete(id);
-  res.send(deleted);
+  try {
+    const deleted = await Immersion.findByIdAndDelete(id);
+    res.send(deleted);
+  } catch (error) {
+    res.status(500);
+    res.send(`Error deleting Immersion ${error}`);
+  }
 }
 
 module.exports = {

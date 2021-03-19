@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Header from '../Header/Header';
 import tossa from '../../img/tossa.jpg';
-import loadImmersions from '../../redux/actions/immersionActions';
+import { loadImmersions } from '../../redux/actions/immersionActions';
 import './History.css';
 
 export function HistoryComponent({ actions, immersionHistory }) {

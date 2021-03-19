@@ -2,7 +2,7 @@ import firebase from 'firebase';
 import '../../firebase';
 import actionTypes from './actionTypes';
 
-export function loadUser() {
+export function loginAction() {
   return async (dispatch) => {
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
@@ -22,7 +22,7 @@ export function loadUser() {
   };
 }
 
-export function logout() {
+export function logoutAction() {
   return async (dispatch) => {
     await firebase.auth().signOut();
 

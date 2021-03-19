@@ -3,13 +3,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { loadUser, logout } from '../../redux/actions/loginActions';
+import { loginAction, logoutAction } from '../../redux/actions/loginActions';
 
 function IsLoggin({ user, action }) {
   return (
     <div>
-      <button type="button" onClick={action.loadUser}>Log in</button>
-      <button type="button" onClick={action.logout}>Logout</button>
+      <button type="button" onClick={action.loginAction}>Log in</button>
+      <button type="button" onClick={action.logoutAction}>Logout</button>
       <p>
         user is logged:
         {' '}
@@ -46,20 +46,20 @@ IsLoggin.propTypes = {
   }).isRequired,
 
   action: PropTypes.shape({
-    loadUser: PropTypes.func.isRequired,
-    logout: PropTypes.func.isRequired
+    loginAction: PropTypes.func.isRequired,
+    logoutAction: PropTypes.func.isRequired
   }).isRequired
 };
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.loginReducer
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    action: bindActionCreators({ loadUser, logout }, dispatch)
+    action: bindActionCreators({ loginAction, logoutAction }, dispatch)
   };
 }
 

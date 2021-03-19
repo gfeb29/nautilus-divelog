@@ -1,7 +1,7 @@
 import axios from 'axios';
 import actionTypes from './actionTypes';
 
-function loadImmersions() {
+export function loadImmersions() {
   return async (dispatch) => {
     const immersions = await axios.get('http://localhost:5000/api/v1/nautilus');
 
@@ -12,4 +12,35 @@ function loadImmersions() {
   };
 }
 
-export default loadImmersions;
+export function createImmersion(newimmersion) {
+  return async (dispatch) => {
+    const immersion = await axios.post('http://localhost:5000/api/v1/nautilus', newimmersion);
+
+    dispatch({
+      type: actionTypes.CREATE_IMMERSION,
+      immersion: immersion.data
+    });
+  };
+}
+
+export function saveImmersion(newimmersion) {
+  return async (dispatch) => {
+    const immersion = await axios.put('http://localhost:5000/api/v1/nautilus', newimmersion);
+
+    dispatch({
+      type: actionTypes.SAVE_IMMERSION,
+      immersion: immersion.data
+    });
+  };
+}
+
+// export function deleteImmersion(name) {
+//   return async (dispatch) => {
+//     const immersion = await axios.delete(`http://localhost:5000/api/v1/nautilus/${name}`);
+
+//     dispatch({
+//       type: actionTypes.DELETE_IMMERSION,
+//       immersionId: immersion.name
+//     });
+//   };
+// }

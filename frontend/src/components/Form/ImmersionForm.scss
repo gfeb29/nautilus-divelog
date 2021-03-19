@@ -3,7 +3,11 @@
     flex-direction: row;
     
     .list{
-        width: 300px;
+        width: 200px;
+        
+        .immersion{
+            border: solid 1px black;
+        }
     }
 
     .form{

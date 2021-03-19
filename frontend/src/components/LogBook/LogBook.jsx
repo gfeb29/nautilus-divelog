@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Usuarios from '../User-login/Usuario';
 
 // import './LogBook.css';
 
@@ -13,7 +12,7 @@ function LogBook() {
       </div>
 
       <div>
-        <Usuarios />
+        LA PUÑETERA GRAFICA
       </div>
     </>
   );
