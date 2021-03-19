@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import {
-  loadImmersions, createImmersion, saveImmersion
+  loadImmersions, createImmersion, saveImmersion, deleteImmersion
 } from '../../redux/actions/immersionActions';
 import './ImmersionForm.css';
 
@@ -105,13 +105,6 @@ function ImmersionForm({ actions, immersionHistory }) {
     setFailure(false);
   };
 
-  // Borrdo "" filtra y devuelve pero no elimina( en el state si que lo elimina)
-  // eslint-disable-next-line no-shadow
-  // const DeleteImmersion = (name) => {
-  //   const filtro = immersionHistory.filter((item) => item.name !== name);
-  //   loadImmersions(filtro);
-  // };
-
   const FirstEdit = (object) => {
     // eslint-disable-next-line no-undef
     setId(object._id);
@@ -166,6 +159,7 @@ function ImmersionForm({ actions, immersionHistory }) {
                 <p>nº inm.</p>
                 <div><span>{immersion?.immersionNumber}</span></div>
                 <button onClick={() => { FirstEdit(immersion); }} className="" type="button">Editar</button>
+                <button onClick={() => { actions.deleteImmersion(immersion._id); }} className="" type="button">Borrar</button>
 
               </li>
 
@@ -281,14 +275,17 @@ ImmersionForm.protoTypes = {
   actions: PropTypes.shape({
     loadImmersions: PropTypes.func.isRequired,
     createImmersion: PropTypes.func.isRequired,
-    saveImmersion: PropTypes.func.isRequired
+    saveImmersion: PropTypes.func.isRequired,
+    deleteImmersion: PropTypes.func.isRequired
   }).isRequired
 
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ loadImmersions, createImmersion, saveImmersion }, dispatch)
+    actions: bindActionCreators({
+      loadImmersions, createImmersion, saveImmersion, deleteImmersion
+    }, dispatch)
   };
 }
 

@@ -38,7 +38,7 @@ async function deleteImmersion(req, res) {
   const id = req.params.immersionParam;
   try {
     const deleted = await Immersion.findByIdAndDelete(id);
-    res.send(deleted);
+    res.json(deleted);
   } catch (error) {
     res.status(500);
     res.send(`Error deleting Immersion ${error}`);
