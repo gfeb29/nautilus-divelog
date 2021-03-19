@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ImmersionForm from '../Form/ImmersionForm';
 
 // import './LogBook.css';
 
@@ -13,7 +12,7 @@ function LogBook() {
       </div>
 
       <div>
-        <ImmersionForm />
+        LA PUÑETERA GRAFICA
       </div>
     </>
   );
