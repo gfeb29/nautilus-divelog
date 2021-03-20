@@ -8,6 +8,7 @@ import History from './components/History/History';
 import LogBook from './components/LogBook/LogBook';
 import Navigation from './components/NavigationMenu/NavigationMenu';
 import ImmersionForm from './components/Form/ImmersionForm';
+import Profile from './components/Profile/Profile';
 import './index.css';
 
 ReactDOM.render(
@@ -15,6 +16,7 @@ ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
+          <Route path="/profile" component={Profile} />
           <Route path="/immersionForm" component={ImmersionForm} />
           <Route path="/history" component={History} />
           <Route path="/logbook" component={LogBook} />

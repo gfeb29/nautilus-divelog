@@ -133,7 +133,6 @@ function ImmersionForm({ actions, immersionHistory }) {
       depthsByTime,
       id
     };
-    console.log(edited);
     actions.saveImmersion(edited);
     setEdit(false);
     setName('');
@@ -192,14 +191,14 @@ function ImmersionForm({ actions, immersionHistory }) {
           <input
             onChange={(e) => { setDate(e.target.value); }}
             className="form-control"
-            type="number"
+            type="date"
             placeholder="date"
             value={date}
           />
           <input
             onChange={(e) => { setTime(e.target.value); }}
             className="form-control"
-            type="number"
+            type="time"
             placeholder="Time"
             value={time}
           />
@@ -262,6 +261,7 @@ function ImmersionForm({ actions, immersionHistory }) {
         </form>
       </div>
     </div>
+
   );
 }
 

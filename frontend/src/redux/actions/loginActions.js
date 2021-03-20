@@ -12,7 +12,7 @@ export function loginAction() {
     } = await firebase.auth().signInWithPopup(provider);
 
     dispatch({
-      type: actionTypes.USER_SING_IN,
+      type: actionTypes.USER_SIGN_IN,
       user: {
         displayName,
         email,
@@ -27,7 +27,7 @@ export function logoutAction() {
     await firebase.auth().signOut();
 
     dispatch({
-      type: actionTypes.USER_SING_OUT
+      type: actionTypes.USER_SIGN_OUT
     });
   };
 }

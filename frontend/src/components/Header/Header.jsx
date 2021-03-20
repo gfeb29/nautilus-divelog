@@ -11,9 +11,9 @@ function Header() {
         </h5>
       </div>
       <div className="nav-bar">
-        <Link to="/">Home</Link>
-        <Link to="/">Profile</Link>
-        <Link to="/">List</Link>
+        <Link to="/navigation">Home</Link>
+        <Link to="/profile">Profile</Link>
+
       </div>
     </header>
   );

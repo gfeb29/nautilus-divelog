@@ -52,6 +52,19 @@
   font-size: 25px;
 }
 
+.a .add-form {
+  color: #e7e0e0;
+  text-decoration: none;
+  border: orange solid 2px;
+  border: solid 3px black;
+  border-radius: 50%;
+  width: 7vw;
+  height: 7vw;
+  max-height: 60px;
+  max-width: 60px;
+  cursor: pointer;
+}
+
 .logbook-label {
   position: absolute;
   top: 56%;
