@@ -3,6 +3,7 @@ import Header from '../Header/Header';
 import buceadorPerfil from '../../img/buceadorPerfil.jpg';
 
 import './LogBook.css';
+import DiveChart from '../DiveChart/DiveChart';
 
 function LogBook() {
   return (
@@ -73,7 +74,10 @@ function LogBook() {
         <div>
           Minimal Temperature: 17°C
         </div>
+        <div>
+          <DiveChart />
 
+        </div>
       </div>
     </>
   );
