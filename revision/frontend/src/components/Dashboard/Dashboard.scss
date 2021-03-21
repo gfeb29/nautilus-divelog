@@ -1,0 +1,74 @@
+.principal{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../../img/medusas.jpg');
+    background-size: 100%;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    
+    .fondo{
+        width: 55vw;
+        height: 140vh;
+        margin: -10vh 0 0 -10vw;
+        background: #292929;
+        opacity: 0.6;
+        transform: rotate(8deg);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .title{
+            transform: rotate(-8deg);
+            display: flex;
+            flex-direction: column;
+            margin-top: -30vh;
+            margin-left: 10vw;
+            align-items: center;
+            font-family: 'Roboto Slab', serif;
+            
+
+            .logo-title{
+                font-size: 72px;
+                font-family: 'Lobster', cursive;
+                color: whitesmoke;
+            }
+
+            .subtitle{
+                font-size: 24px;
+                font-family: 'Lobster', cursive;
+                margin-top: 20%;
+                color: whitesmoke;
+
+            }
+
+            .log-button{
+                margin-top: 50%;
+                width: 165px;
+                height: 47px;
+                left: 282px;
+                top: 532px;
+                background: #EDEDED;
+                border-radius: 5px;
+                font-size: 20px;
+                font-family: 'Lobster', cursive;
+                cursor: pointer;
+                border: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
+                
+                
+            }
+            .log-button:hover{
+                background-color:#A0C5FA;
+                color: whitesmoke;
+            }
+
+
+        }
+    }
+}

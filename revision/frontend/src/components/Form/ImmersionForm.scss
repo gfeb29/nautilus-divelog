@@ -1,0 +1,22 @@
+.users{
+    display: flex;
+    flex-direction: row;
+    
+    .list{
+        width: 200px;
+        
+        .immersion{
+            border: solid 1px black;
+        }
+    }
+
+    .form{
+        width: 300px;
+
+        .form-group{
+            .form-control{
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
