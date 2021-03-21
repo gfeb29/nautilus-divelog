@@ -3,7 +3,7 @@
   width: 100vw;
   height: 100vh;
   background-image: url("../../img/medusas.jpg");
-  background-size: cover;
+  background-size: 100%;
   background-position: bottom;
   background-repeat: no-repeat;
   overflow: hidden;

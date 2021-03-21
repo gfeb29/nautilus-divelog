@@ -1,16 +1,15 @@
 .cards{
 
     background-color: #040c17;
-    padding: 50px 0 0 50px;
-    display: flex;
-    flex-direction: column;
 
     .shadow-card{
         position: relative;
         display: flex;
         justify-content: flex-end;
         width: 536px;
-        
+        height: 252px;
+        left: 128px;
+        top: 216px;
         
         background: rgba(245, 239, 239, 0.18);
         border-radius: 10px;

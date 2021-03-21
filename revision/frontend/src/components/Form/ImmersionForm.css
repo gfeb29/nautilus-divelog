@@ -1,0 +1,26 @@
+.users {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.users .list {
+  width: 200px;
+}
+
+.users .list .immersion {
+  border: solid 1px black;
+}
+
+.users .form {
+  width: 300px;
+}
+
+.users .form .form-group .form-control {
+  margin-bottom: 10px;
+}
+/*# sourceMappingURL=ImmersionForm.css.map */
