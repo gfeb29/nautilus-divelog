@@ -7,11 +7,10 @@ function Header() {
     <header>
       <div className="portfolio">
         <h5>
-          Nautilus
+          <Link id="logo" to="/navigation">Nautilus</Link>
         </h5>
       </div>
       <div className="nav-bar">
-        <Link to="/navigation">Home</Link>
         <Link to="/profile">Profile</Link>
 
       </div>

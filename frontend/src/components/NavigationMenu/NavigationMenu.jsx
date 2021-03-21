@@ -21,8 +21,8 @@ function Navigation() {
           </Link>
           <div className="history-label">History</div>
           <Link to="/history" id="history" className="log-menu"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAA0klEQVRIie3SP0oDQRzF8U8Eb5Ay2OUogiEJqW1yBdErBCGlJ8hJ8q8PsbU3dpbaWWyKnYXJIuwus0WKffBg3rD7nR8zj04NNcYXThi1AeyV8gmDaH0X1vfo12R+Y12Em5o/ZTW/q9RIPvknHtqCdmqkrqaVusqazrDHb/AO07bgS/n1ZTjgGOXXVPgsgmWYB8d7k/IjN6npcyn/Bcd6SanpCh94+wd8iycMr7qmO5f3/Rgc721ShpmqfuRxygHkVSxgR7xHeZEKLzTBFj/BG9HkZw+/Teny2WkuAAAAAElFTkSuQmCC" alt="list" /></Link>
+          <Link to="/immersionForm" id="form" className="add-form log-menu" alt="addForm">+</Link>
         </div>
-        <Link to="/immersionForm" id="form" className="add-form" alt="addForm">+</Link>
       </section>
 
     </>

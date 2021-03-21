@@ -55,8 +55,12 @@
 .a .add-form {
   color: #e7e0e0;
   text-decoration: none;
-  border: orange solid 2px;
-  border: solid 3px black;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  right: -15%;
+  font-size: 30px;
+  color: #404085;
   border-radius: 50%;
   width: 7vw;
   height: 7vw;

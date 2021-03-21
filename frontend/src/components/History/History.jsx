@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -17,8 +16,7 @@ export function HistoryComponent({ actions, immersionHistory }) {
   return (
     <>
       <Header />
-      <div className="a">
-        <Link to="/navigation" className="DARCLASE">AL MENÚ!!!</Link>
+      <div className="cards">
         {immersionHistory && immersionHistory.map((immersion) => (
           <div className="shadow-card" key={Math.random()}>
             <img className="photo_profile" src={tossa} alt="photo_profile" />
