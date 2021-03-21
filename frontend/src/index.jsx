@@ -9,6 +9,7 @@ import LogBook from './components/LogBook/LogBook';
 import Navigation from './components/NavigationMenu/NavigationMenu';
 import ImmersionForm from './components/Form/ImmersionForm';
 import Profile from './components/Profile/Profile';
+import DiveChart from './components/DiveChart/DiveChart';
 import './index.css';
 
 ReactDOM.render(
@@ -16,6 +17,7 @@ ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
+          <Route path="/chart" component={DiveChart} />
           <Route path="/profile" component={Profile} />
           <Route path="/immersionForm" component={ImmersionForm} />
           <Route path="/history" component={History} />
