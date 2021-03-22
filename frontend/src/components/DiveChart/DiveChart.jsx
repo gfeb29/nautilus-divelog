@@ -4,21 +4,6 @@ import { time, depth } from './data';
 import './DiveChart.css';
 
 function DiveChart() {
-  /*
-    // data- configuración a mostrar en la gráfica
-  const data = {
-    // labels - parámetros a comparar
-    labels: ['a', 'b', 'c', 'd', 'e'],
-    // personalización de la gráfica
-    datasets: [{
-      // profundidad?
-      label: 'Profundidad',
-      backgroundColor: '#000000'
-
-    }]
-};
- */
-
   const state = {
     labels: time,
     datasets: [

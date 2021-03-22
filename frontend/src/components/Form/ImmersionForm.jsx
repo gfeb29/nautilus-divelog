@@ -106,7 +106,6 @@ function ImmersionForm({ actions, immersionHistory }) {
   };
 
   const FirstEdit = (object) => {
-    // eslint-disable-next-line no-undef
     setId(object._id);
     setName(object.name);
     setLocation(object.location);

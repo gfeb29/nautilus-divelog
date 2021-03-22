@@ -12,6 +12,13 @@ export function loadImmersions() {
   };
 }
 
+export function loadDive(immersion) {
+  return {
+    type: actionTypes.LOAD_DIVE,
+    immersion
+  };
+}
+
 export function createImmersion(newimmersion) {
   return async (dispatch) => {
     const immersion = await axios.post('http://localhost:5000/api/v1/nautilus', newimmersion);

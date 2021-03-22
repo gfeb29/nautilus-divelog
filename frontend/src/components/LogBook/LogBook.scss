@@ -1,23 +1,45 @@
 .logbook{
     background-color: #040c17;
-    height: 100vh;
-    width: 100vw;
+    
     color: blanchedalmond;
-    height: calc(100vh - 50px);
 
-    .photo_user{
-        width: 300px;
-        height: 200px;
-        left: 80px;
-        border-radius: 50%;
-        margin-top: 62px;
-        
-    }
-
-    .history{
+    .history-box{
         border: solid 2px white;
-        width: 20vw;
-        height: 30vh;
-        overflow:scroll;
+        display: flex;
+        flex-direction: row;
+        height: 500px;
+
+        .photo_user{
+            width: 300px;
+            height: 200px;
+            left: 80px;
+            border-radius: 50%;
+            margin-top: 62px;
+            
+        }
+
+        .history{
+            border: solid 2px white;
+            width: 300px;
+            height: 300px;
+            overflow:scroll;
+
+            .immersion{
+                border: solid 2px white;
+            }
+    
+        }
+
+        .selected-immersion{
+            border: solid 2px white;
+        }
+    
     }
+
+    .logbook-chart{
+        border: solid 2px white;
+    }
+
+    
+    
 }

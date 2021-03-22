@@ -3,6 +3,7 @@ import initialState from '../store/initialState';
 
 function immersionReducer(state = { immersionHistory: initialState.immersionHistory }, action) {
   let newImmersionHistory;
+  let immersion;
 
   switch (action.type) {
     case actionTypes.LOAD_IMMERSIONS:
@@ -18,9 +19,17 @@ function immersionReducer(state = { immersionHistory: initialState.immersionHist
 
     case actionTypes.DELETE_IMMERSION:
       return {
-        immersionHistory: state.immersionHistory.filter((immersion) => (
-          immersion.id !== action.immersion.id
+        immersionHistory: state.immersionHistory.filter((dive) => (
+          dive.id !== action.immersion.id
         ))
+      };
+
+    case actionTypes.LOAD_DIVE:
+      immersion = state.immersionHistory.filter((dive) => (
+        dive.location === action.immersion.location
+      ));
+      return {
+        ...state, immersion
       };
 
     default:
