@@ -13,6 +13,19 @@ function getAllData(req, res) {
   });
 }
 
+async function getOneImmersion(req, res) {
+  const { locationId } = req.params;
+
+  try {
+    const diveByLocation = await Immersion.findOne(({ location }) => (
+      location === locationId).exec());
+    res.json(diveByLocation);
+  } catch (error) {
+    res.status(500);
+    res.send(`No immersion with that ${locationId}${error}`);
+  }
+}
+
 function createImmersion(req, res) {
   const newImmersion = new Immersion(req.body);
 
@@ -45,6 +58,7 @@ async function deleteImmersion(req, res) {
 
 module.exports = {
   getAllData,
+  getOneImmersion,
   createImmersion,
   updateImmersion,
   deleteImmersion

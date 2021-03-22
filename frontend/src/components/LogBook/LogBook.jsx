@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useParams } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -9,6 +10,10 @@ import DiveChart from '../DiveChart/DiveChart';
 import './LogBook.css';
 
 function LogBook({ actions, immersionHistory, immersion }) {
+  // const { locationId } = useParams(immersion);
+  console.log(useParams());
+  const { locationId } = useParams();
+
   useEffect(() => {
     actions.loadImmersions();
   }, [immersionHistory?.length]);
@@ -18,6 +23,13 @@ function LogBook({ actions, immersionHistory, immersion }) {
       actions.loadDive(immersionHistory[0]);
     }
   }, [immersionHistory]);
+
+  // if (locationId) {
+  //   useEffect(() => {
+  //     actions.loadDive(locationId);
+  //   }, [immersionHistory]);
+  // }
+
   return (
     <>
       <Header />
@@ -25,7 +37,7 @@ function LogBook({ actions, immersionHistory, immersion }) {
         <div>
           <div className="history-box">
             <img className="photo_user" src={buceadorPerfil} alt="photo_user" />
-
+            <span>{locationId}</span>
             <div className="selected-immersion">
               <h3 className="diver">{immersion && (immersion[0].name)}</h3>
               <div>

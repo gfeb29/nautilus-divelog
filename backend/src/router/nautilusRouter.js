@@ -11,7 +11,8 @@ function NautilusRouter() {
     .put(nautilusController.updateImmersion);
 
   router
-    .route('/:immersionParam')
+    .route('/:locationId')
+    .get(nautilusController.getOneImmersion)
     .put(nautilusController.updateImmersion)
     .delete(nautilusController.deleteImmersion);
 

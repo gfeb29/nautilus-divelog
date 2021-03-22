@@ -20,7 +20,7 @@ export function HistoryComponent({ actions, immersionHistory }) {
       <div className="cards">
         {immersionHistory && immersionHistory.map((immersion) => (
           <div className="card">
-            <Link to={`/logbook/:${immersion.location}`} type="button" className="shadow-card" key={Math.random()}>
+            <Link to={`/logbook/${immersion.location}`} type="button" className="shadow-card" key={immersion.id}>
               <img className="photo_profile" src={tossa} alt="photo_profile" />
               <div className="card">
 
