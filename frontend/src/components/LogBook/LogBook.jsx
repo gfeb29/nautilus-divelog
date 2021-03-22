@@ -1,86 +1,133 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+import { loadImmersions, loadDive } from '../../redux/actions/immersionActions';
 import Header from '../Header/Header';
 import buceadorPerfil from '../../img/buceadorPerfil.jpg';
-
-import './LogBook.css';
 import DiveChart from '../DiveChart/DiveChart';
+import './LogBook.css';
 
-function LogBook() {
+function LogBook({ actions, immersionHistory, immersion }) {
+  useEffect(() => {
+    actions.loadImmersions();
+  }, [immersionHistory?.length]);
+
+  useEffect(() => {
+    if (immersionHistory) {
+      actions.loadDive(immersionHistory[0]);
+    }
+  }, [immersionHistory]);
   return (
     <>
       <Header />
       <div className="logbook">
-        <img className="photo_user" src={buceadorPerfil} alt="photo_user" />
-        <h3 className="diver">Fulanito de tal</h3>
         <div>
-          Immersion Number: 1
-        </div>
-        <div>
-          Tossa de Mar
-        </div>
-        <div className="history">
-          <ul>
-            <li>
-              <p>nº inm.</p>
-              <span>1</span>
-              <div>Tossa de Mar</div>
-            </li>
-            <li>
-              <p>nº inm.</p>
-              <span>2</span>
-              <div>Lago Baikal</div>
-            </li>
-            <li>
-              <p>nº inm.</p>
-              <span>3</span>
-              <div>Maldivas</div>
-            </li>
-            <li>
-              <p>nº inm.</p>
-              <span>4</span>
-              <div>Isla de Coco - Costa Rica</div>
-            </li>
-            <li>
-              <p>nº inm.</p>
-              <span>5</span>
-              <div>TUBBATAHA - Filipinas</div>
-            </li>
-            <li>
-              <p>nº inm.</p>
-              <span>6</span>
-              <div>RAJA AMPAT - Indonesia</div>
-            </li>
-            <li>
-              <p>nº inm.</p>
-              <span>7</span>
-              <div>Palau - Micronesia</div>
-            </li>
-            <li>
-              <p>nº inm.</p>
-              <span>8</span>
-              <div>Sipadan - Borneo</div>
-            </li>
-          </ul>
-        </div>
-        <div>
-          Date: 18/10/2020 --- Time: 10:37h
-        </div>
-        <div>
-          Max deep: 25 meters
-        </div>
-        <div>
-          Duration: 48 min
-        </div>
-        <div>
-          Minimal Temperature: 17°C
-        </div>
-        <div>
-          <DiveChart />
+          <div className="history-box">
+            <img className="photo_user" src={buceadorPerfil} alt="photo_user" />
 
+            <div className="selected-immersion">
+              <h3 className="diver">{immersion && (immersion[0].name)}</h3>
+              <div>
+                Immersion Number:
+                {' '}
+                {immersion && (immersion[0].immersionNumber)}
+              </div>
+              <div>
+                Location:
+                {' '}
+                {immersion && (immersion[0].location)}
+              </div>
+              <div>
+                Date:
+                {' '}
+                {immersion && (immersion[0].date)}
+                {' '}
+                --- Time:
+                {' '}
+                {immersion && (immersion[0].time)}
+                h
+              </div>
+              <div>
+                Max deep:
+                {' '}
+                {immersion && (immersion[0].maxDepth)}
+                {' '}
+                meters
+              </div>
+              <div>
+                Duration:
+                {' '}
+                {immersion && (immersion[0].duration)}
+                {' '}
+                min.
+              </div>
+              <div>
+                Minimal Temperature:
+                {' '}
+                {immersion && (immersion[0].minimalTemperature)}
+                °C
+              </div>
+            </div>
+            <div className="history">
+              <h3 className="immersions-title">Immersions</h3>
+              {immersionHistory && immersionHistory.map((selectedImmersion) => (
+                <div className="immersion" key={Math.random()}>
+                  <button type="button" onClick={() => { actions.loadDive(selectedImmersion); }}>
+                    <ul>
+                      <h4>{selectedImmersion?.location}</h4>
+                      <li>
+                        <p>nº inm.</p>
+                        <div>{selectedImmersion?.immersionNumber}</div>
+                      </li>
+                    </ul>
+                  </button>
+
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="logbook-chart">
+            <DiveChart />
+
+          </div>
         </div>
+
       </div>
     </>
   );
 }
 
-export default LogBook;
+LogBook.propTypes = {
+  immersionHistory: PropTypes.arrayOf(PropTypes.shape({
+    location: PropTypes.string,
+    name: PropTypes.string
+  })).isRequired,
+
+  immersion: PropTypes.arrayOf(PropTypes.objectOf({
+  })).isRequired,
+
+  actions: PropTypes.shape({
+    loadImmersions: PropTypes.func.isRequired,
+    loadDive: PropTypes.func.isRequired
+  }).isRequired
+};
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({
+      loadImmersions,
+      loadDive
+    }, dispatch)
+  };
+}
+
+export function mapStatetoProps(state) {
+  return {
+    immersionHistory: state.immersionReducer.immersionHistory,
+    immersion: state.immersionReducer.immersion
+  };
+}
+
+export default connect(mapStatetoProps, mapDispatchToProps)(LogBook);
