@@ -17,8 +17,7 @@ async function getOneImmersion(req, res) {
   const { locationId } = req.params;
 
   try {
-    const diveByLocation = await Immersion.findOne(({ location }) => (
-      location === locationId).exec());
+    const diveByLocation = await Immersion.findOne({ location: locationId }).exec();
     res.json(diveByLocation);
   } catch (error) {
     res.status(500);
