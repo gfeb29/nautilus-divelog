@@ -45,7 +45,7 @@ async function updateImmersion(req, res) {
 }
 
 async function deleteImmersion(req, res) {
-  const id = req.params.immersionParam;
+  const id = req.params.locationId;
   try {
     const deleted = await Immersion.findByIdAndDelete(id);
     res.json(deleted);
