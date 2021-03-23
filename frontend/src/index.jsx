@@ -17,6 +17,7 @@ ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
+          <Route path="/logbook/:locationId" component={LogBook} />
           <Route path="/chart" component={DiveChart} />
           <Route path="/profile" component={Profile} />
           <Route path="/immersionForm" component={ImmersionForm} />

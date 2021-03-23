@@ -1,23 +1,41 @@
 import React, { useEffect } from 'react';
+import { useParams } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { loadImmersions, loadDive } from '../../redux/actions/immersionActions';
+import { loadImmersions, loadDive, loadByLocation } from '../../redux/actions/immersionActions';
 import Header from '../Header/Header';
 import buceadorPerfil from '../../img/buceadorPerfil.jpg';
 import DiveChart from '../DiveChart/DiveChart';
 import './LogBook.css';
 
 function LogBook({ actions, immersionHistory, immersion }) {
+  // const { locationId } = useParams(immersion);
+  // console.log(useParams());
+  const { locationId } = useParams();
+
   useEffect(() => {
     actions.loadImmersions();
   }, [immersionHistory?.length]);
 
   useEffect(() => {
-    if (immersionHistory) {
+    if (locationId) {
+      actions.loadByLocation(locationId);
+    } else if (immersionHistory) {
       actions.loadDive(immersionHistory[0]);
     }
+
+    // if (immersionHistory) {
+    //   actions.loadDive(immersionHistory[0]);
+    // }
   }, [immersionHistory]);
+
+  // if (locationId) {
+  //   useEffect(() => {
+  //     actions.loadDive(locationId);
+  //   }, [immersionHistory]);
+  // }
+
   return (
     <>
       <Header />
@@ -25,47 +43,47 @@ function LogBook({ actions, immersionHistory, immersion }) {
         <div>
           <div className="history-box">
             <img className="photo_user" src={buceadorPerfil} alt="photo_user" />
-
+            <span>{locationId}</span>
             <div className="selected-immersion">
-              <h3 className="diver">{immersion && (immersion[0].name)}</h3>
+              <h3 className="diver">{(immersion?.name)}</h3>
               <div>
                 Immersion Number:
                 {' '}
-                {immersion && (immersion[0].immersionNumber)}
+                {(immersion?.immersionNumber)}
               </div>
               <div>
                 Location:
                 {' '}
-                {immersion && (immersion[0].location)}
+                {(immersion?.location)}
               </div>
               <div>
                 Date:
                 {' '}
-                {immersion && (immersion[0].date)}
+                {(immersion?.date)}
                 {' '}
                 --- Time:
                 {' '}
-                {immersion && (immersion[0].time)}
+                {(immersion?.time)}
                 h
               </div>
               <div>
                 Max deep:
                 {' '}
-                {immersion && (immersion[0].maxDepth)}
+                {(immersion?.maxDepth)}
                 {' '}
                 meters
               </div>
               <div>
                 Duration:
                 {' '}
-                {immersion && (immersion[0].duration)}
+                {(immersion?.duration)}
                 {' '}
                 min.
               </div>
               <div>
                 Minimal Temperature:
                 {' '}
-                {immersion && (immersion[0].minimalTemperature)}
+                {(immersion?.minimalTemperature)}
                 °C
               </div>
             </div>
@@ -110,7 +128,8 @@ LogBook.propTypes = {
 
   actions: PropTypes.shape({
     loadImmersions: PropTypes.func.isRequired,
-    loadDive: PropTypes.func.isRequired
+    loadDive: PropTypes.func.isRequired,
+    loadByLocation: PropTypes.func.isRequired
   }).isRequired
 };
 
@@ -118,7 +137,8 @@ export function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
       loadImmersions,
-      loadDive
+      loadDive,
+      loadByLocation
     }, dispatch)
   };
 }

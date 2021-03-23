@@ -1,6 +1,7 @@
+const { get } = require('mongoose');
 const immersionModel = require('../model/immersionModel');
 const {
-  getAllData, createImmersion, updateImmersion, deleteImmersion
+  getAllData, getOneImmersion, createImmersion, updateImmersion, deleteImmersion
 } = require('./nautilusController');
 
 const Immersion = require('../model/immersionModel');
@@ -38,6 +39,43 @@ describe('Given a getAllData', () => {
 
     expect(res.json).toHaveBeenCalledWith([1, 2, 3]);
     expect(res.json).toHaveBeenCalled();
+  });
+});
+
+describe('Given a getOneImmersion', () => {
+  let res;
+  let req;
+
+  beforeEach(() => {
+    res = {
+      json: jest.fn(),
+      send: jest.fn(),
+      status: jest.fn()
+    };
+  });
+
+  test('Then should call res.send with params', async () => {
+    req = {
+      params: {
+        locationId: 'fakelocation'
+      }
+    };
+
+    Immersion.findOne.mockReturnValueOnce({ exec: jest.fn() });
+
+    await getOneImmersion(req, res);
+
+    expect(res.json).toHaveBeenCalled();
+  });
+
+  test('Then should call res.status with value 500', async () => {
+    Immersion.findOne.mockImplementationOnce(() => {
+      throw new Error();
+    });
+
+    await getOneImmersion(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
   });
 });
 
@@ -115,7 +153,8 @@ describe('Given a deleteImmersion', () => {
   beforeEach(() => {
     res = {
       send: jest.fn(),
-      status: jest.fn()
+      status: jest.fn(),
+      json: jest.fn()
     };
 
     req = {
@@ -129,7 +168,7 @@ describe('Given a deleteImmersion', () => {
 
     await deleteImmersion(req, res);
 
-    expect(res.send).toHaveBeenCalledWith({ name: 'fakename' });
+    expect(res.json).toHaveBeenCalledWith({ name: 'fakename' });
   });
 
   test('Then should call res.status with value 500 ', async () => {

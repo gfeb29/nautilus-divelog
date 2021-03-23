@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Header from '../Header/Header';
 import tossa from '../../img/tossa.jpg';
-import { loadImmersions } from '../../redux/actions/immersionActions';
+import { loadImmersions, loadByLocation } from '../../redux/actions/immersionActions';
 import './History.css';
 
 export function HistoryComponent({ actions, immersionHistory }) {
@@ -20,7 +20,7 @@ export function HistoryComponent({ actions, immersionHistory }) {
       <div className="cards">
         {immersionHistory && immersionHistory.map((immersion) => (
           <div className="card">
-            <Link to={`/logbook/:${immersion.location}`} type="button" className="shadow-card" key={Math.random()}>
+            <Link to={`/logbook/${immersion.location}`} type="button" className="shadow-card" key={immersion.location}>
               <img className="photo_profile" src={tossa} alt="photo_profile" />
               <div className="card">
 
@@ -60,13 +60,14 @@ History.propTypes = {
   })).isRequired,
 
   actions: PropTypes.shape({
-    loadImmersions: PropTypes.func.isRequired
+    loadImmersions: PropTypes.func.isRequired,
+    loadByLocation: PropTypes.func.isRequired
   }).isRequired
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ loadImmersions }, dispatch)
+    actions: bindActionCreators({ loadImmersions, loadByLocation }, dispatch)
   };
 }
 

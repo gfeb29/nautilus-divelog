@@ -19,6 +19,25 @@ export function loadDive(immersion) {
   };
 }
 
+// function setLoading() {
+//   return {
+//     type: actionTypes.SET_LOADING
+//   };
+// }
+
+export function loadByLocation(locationId) {
+  return async (dispatch) => {
+    // dispatch(setLoading());
+    const immersion = await axios.get(`http://localhost:5000/api/v1/nautilus/${locationId}`);
+    // eslint-disable-next-line no-debugger
+    debugger;
+    dispatch({
+      type: actionTypes.LOAD_BY_LOCATION,
+      immersion: immersion.data
+    });
+  };
+}
+
 export function createImmersion(newimmersion) {
   return async (dispatch) => {
     const immersion = await axios.post('http://localhost:5000/api/v1/nautilus', newimmersion);
