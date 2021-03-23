@@ -4,7 +4,6 @@ import initialState from '../store/initialState';
 function immersionReducer(state = { immersionHistory: initialState.immersionHistory }, action) {
   let newImmersionHistory;
   let immersion;
-  // eslint-disable-next-line no-debugger
 
   switch (action.type) {
     case actionTypes.LOAD_IMMERSIONS:
@@ -34,8 +33,6 @@ function immersionReducer(state = { immersionHistory: initialState.immersionHist
       };
 
     case actionTypes.LOAD_BY_LOCATION:
-      // eslint-disable-next-line no-debugger
-      debugger;
       return {
         ...state, immersion: action.immersion
       };
