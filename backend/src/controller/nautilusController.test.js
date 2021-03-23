@@ -1,3 +1,4 @@
+const { get } = require('mongoose');
 const immersionModel = require('../model/immersionModel');
 const {
   getAllData, getOneImmersion, createImmersion, updateImmersion, deleteImmersion
@@ -51,17 +52,30 @@ describe('Given a getOneImmersion', () => {
       send: jest.fn(),
       status: jest.fn()
     };
-
-    req = {
-      params: {}
-    };
   });
-  test('Then should call res.json', async () => {
-    immersionModel.findOne.mockImplementationOnce({ location: 'fakelocation' });
+
+  test('Then should call res.send with params', async () => {
+    req = {
+      params: {
+        locationId: 'fakelocation'
+      }
+    };
+
+    Immersion.findOne.mockReturnValueOnce({ exec: jest.fn() });
 
     await getOneImmersion(req, res);
 
-    expect(res.json).mockReturnValueOnce({ location: 'fakelocation' });
+    expect(res.json).toHaveBeenCalled();
+  });
+
+  test('Then should call res.status with value 500', async () => {
+    Immersion.findOne.mockImplementationOnce(() => {
+      throw new Error();
+    });
+
+    await getOneImmersion(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
   });
 });
 
