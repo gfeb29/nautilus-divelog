@@ -16,133 +16,152 @@ function ImmersionForm({ actions, immersionHistory }) {
     actions.loadImmersions();
   }, [immersionHistory?.length]);
 
-  const [id, setId] = useState('');
-  const [name, setName] = useState('');
-  const [location, setLocation] = useState('');
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
-  const [maxDepth, setMaxDepth] = useState('');
-  const [duration, setDuration] = useState('');
-  const [minimalTemperature, setMinimalTemperature] = useState('');
-  const [immersionNumber, setImmersionNumber] = useState('');
-  const [depthsByTime, setDepthsByTime] = useState('');
+  // const [id] = useState('');
+  // const [name, setName] = useState('');
+  // const [location, setLocation] = useState('');
+  // const [date, setDate] = useState('');
+  // const [time, setTime] = useState('');
+  // const [maxDepth, setMaxDepth] = useState('');
+  // const [duration, setDuration] = useState('');
+  // const [minimalTemperature, setMinimalTemperature] = useState('');
+  // const [immersionNumber, setImmersionNumber] = useState('');
+  // const [depthsByTime, setDepthsByTime] = useState('');
   const [failure, setFailure] = useState(false);
   const [error, setError] = useState('');
   const [edit, setEdit] = useState(false);
 
+  const [immersionObj, setImmersion] = useState({});
+
+  const defaultObject = {
+    name: '',
+    location: '',
+    date: '',
+    time: '',
+    maxDepth: '',
+    duration: '',
+    minimalTemperature: '',
+    immersionNumber: '',
+    depthsByTime: ''
+    // id
+  };
+
+  const onChangeHandler = (e) => {
+    setImmersion({
+      ...immersionObj,
+      [e.target.name]: e.target.value
+    });
+  };
+
   const AddInfoImmersion = (e) => {
     e.preventDefault();
 
-    if (!name.trim()) {
+    if (!immersionObj.name.trim()) {
       setFailure(true);
       setError('Name is required');
       return;
     }
 
-    if (!location.trim()) {
+    if (!immersionObj.location.trim()) {
       setFailure(true);
       setError('Location is required');
       return;
     }
 
-    if (!date.trim()) {
+    if (!immersionObj.date.trim()) {
       setFailure(true);
       setError('Date is required');
       return;
     }
 
-    if (!time.trim()) {
+    if (!immersionObj.time.trim()) {
       setFailure(true);
       setError('Time is required');
       return;
     }
 
-    if (!maxDepth.trim()) {
+    if (!immersionObj.maxDepth.trim()) {
       setFailure(true);
       setError('Max. Depth is required');
       return;
     }
 
-    if (!duration.trim()) {
+    if (!immersionObj.duration.trim()) {
       setFailure(true);
       setError('Duration is required');
       return;
     }
 
-    if (!minimalTemperature.trim()) {
+    if (!immersionObj.minimalTemperature.trim()) {
       setFailure(true);
       setError('Minimal Temperature is required');
       return;
     }
 
-    if (!immersionNumber.trim()) {
+    if (!immersionObj.immersionNumber.trim()) {
       setFailure(true);
       setError('Immersion Number is required');
       return;
     }
 
-    const user = {
-      id,
-      name,
-      location,
-      date,
-      time,
-      maxDepth,
-      duration,
-      minimalTemperature,
-      immersionNumber,
-      depthsByTime
-    };
-    actions.createImmersion(user);
-    setName('');
-    setLocation('');
-    setDate('');
-    setTime('');
-    setMaxDepth('');
-    setDuration('');
-    setMinimalTemperature('');
-    setImmersionNumber('');
-    setDepthsByTime('');
+    // const user = {
+    //   id,
+    //   name,
+    //   location,
+    //   date,
+    //   time,
+    //   maxDepth,
+    //   duration,
+    //   minimalTemperature,
+    //   immersionNumber,
+    //   depthsByTime
+    // };
+    actions.createImmersion(immersionObj);
+    setImmersion({ ...defaultObject });
+    // setName('');
+    // setLocation('');
+    // setDate('');
+    // setTime('');
+    // setMaxDepth('');
+    // setDuration('');
+    // setMinimalTemperature('');
+    // setImmersionNumber('');
+    // setDepthsByTime('');
     setFailure(false);
   };
 
   const FirstEdit = (object) => {
-    setId(object._id);
-    setName(object.name);
-    setLocation(object.location);
-    setDate(object.date);
-    setTime(object.time);
-    setMaxDepth(object.maxDepth);
-    setDuration(object.duration);
-    setMinimalTemperature(object.minimalTemperature);
-    setImmersionNumber(object.immersionNumber);
+    setImmersion({
+      ...object,
+      id: object._id
+    });
     setEdit(true);
   };
 
   const FinalEdit = (e) => {
     e.preventDefault();
-    const edited = {
-      name,
-      location,
-      date,
-      time,
-      maxDepth,
-      duration,
-      minimalTemperature,
-      immersionNumber,
-      depthsByTime,
-      id
-    };
-    actions.saveImmersion(edited);
+    // const edited = {
+    //   name,
+    //   location,
+    //   date,
+    //   time,
+    //   maxDepth,
+    //   duration,
+    //   minimalTemperature,
+    //   immersionNumber,
+    //   depthsByTime,
+    //   id
+    // };
+    actions.saveImmersion(immersionObj);
     setEdit(false);
-    setName('');
-    setLocation('');
-    setDate('');
-    setTime('');
-    setMaxDepth('');
-    setDuration('');
-    setMinimalTemperature('');
-    setImmersionNumber('');
+    setImmersion({});
+    // setName('');
+    // setLocation('');
+    // setDate('');
+    // setTime('');
+    // setMaxDepth('');
+    // setDuration('');
+    // setMinimalTemperature('');
+    // setImmersionNumber('');
   };
 
   return (
@@ -153,7 +172,7 @@ function ImmersionForm({ actions, immersionHistory }) {
           <h2>Listado de Immersiones</h2>
 
           {immersionHistory && immersionHistory.map((immersion) => (
-            <div key={Math.random()}>
+            <div key={immersion._id}>
               <ul className="immersion">
                 <h4>{immersion?.location}</h4>
                 <li>
@@ -175,80 +194,59 @@ function ImmersionForm({ actions, immersionHistory }) {
             failure ? (<span>{error}</span>) : (<span />)
         }
           <form className="form-group">
-            <input
-              onChange={(e) => { setName(e.target.value); }}
-              className="form-control"
-              type="text"
-              placeholder="name"
-              contentEditable={false}
-              value={name}
-            />
-            <input
-              onChange={(e) => { setLocation(e.target.value); }}
-              className="form-control"
-              type="text"
-              placeholder="Location"
-              value={location}
-            />
-            <input
-              onChange={(e) => { setDate(e.target.value); }}
-              className="form-control"
-              type="date"
-              placeholder="date"
-              value={date}
-            />
-            <input
-              onChange={(e) => { setTime(e.target.value); }}
-              className="form-control"
-              type="time"
-              placeholder="Time"
-              value={time}
-            />
-            <input
-              onChange={(e) => { setMaxDepth(e.target.value); }}
-              className="form-control"
-              type="number"
-              placeholder="Max. depth"
-              value={maxDepth}
-            />
-            <input
-              onChange={(e) => { setDuration(e.target.value); }}
-              className="form-control"
-              type="number"
-              placeholder="Duration"
-              value={duration}
-            />
-            <input
-              onChange={(e) => { setMinimalTemperature(e.target.value); }}
-              className="form-control"
-              type="number"
-              placeholder="Minimal Temperature"
-              value={minimalTemperature}
-            />
-            <input
-              onChange={(e) => { setImmersionNumber(e.target.value); }}
-              className="form-control"
-              type="number"
-              placeholder="Immersion Number"
-              value={immersionNumber}
-            />
-            <input
-              onChange={(e) => { setDepthsByTime(e.target.value); }}
-              className="form-control"
-              type="number"
-              placeholder="Depths by time"
-              value={depthsByTime}
-            />
+            <div>
+              <label htmlFor="name">Name</label>
+              <input className="form-control" type="text" placeholder="Name" name="name" id="name" value={immersionObj.name} onChange={onChangeHandler} />
+            </div>
+            <div>
+              <label htmlFor="location">Location</label>
+              <input className="form-control" type="text" placeholder="Location" name="location" id="location" value={immersionObj.location} onChange={onChangeHandler} />
+            </div>
+            <div>
+              <label htmlFor="date">Date</label>
+              <input className="form-control" type="date" placeholder="date" name="date" id="date" value={immersionObj.date} onChange={onChangeHandler} />
+            </div>
+            <div>
+              <label htmlFor="time">Time</label>
+              <input className="form-control" type="time" placeholder="time" name="time" id="time" value={immersionObj.time} onChange={onChangeHandler} />
+            </div>
+            <div>
+              <label htmlFor="maxDepth">Max Depth</label>
+              <input className="form-control" type="number" placeholder="maxDepth" name="maxDepth" id="maxDepth" value={immersionObj.maxDepth} onChange={onChangeHandler} />
+            </div>
+            <div>
+              <label htmlFor="duration">Duration</label>
+              <input className="form-control" type="number" placeholder="duration" name="duration" id="duration" value={immersionObj.duration} onChange={onChangeHandler} />
+            </div>
+            <div>
+              <label htmlFor="minimalTemperature">Minimal Temperature</label>
+              <input className="form-control" type="number" placeholder="minimalTemperature" name="minimalTemperature" id="minimalTemperature" value={immersionObj.minimalTemperature} onChange={onChangeHandler} />
+            </div>
+            <div>
+              <label htmlFor="immersionNumber">Immersion Number</label>
+              <input className="form-control" type="number" placeholder="immersionNumber" name="immersionNumber" id="immersionNumber" value={immersionObj.immersionNumber} onChange={onChangeHandler} />
+            </div>
             {
               edit ? (
-                <button
-                  onClick={(e) => { FinalEdit(e); }}
-                  className="form-button"
-                  type="submit"
-                >
-                  Editar
+                <>
+                  <button
+                    onClick={(e) => { FinalEdit(e); }}
+                    className="form-button"
+                    type="submit"
+                  >
+                    Editar
 
-                </button>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setEdit(false);
+                      setImmersion({ ...defaultObject });
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </>
               ) : (
                 <button
                   onClick={(e) => { AddInfoImmersion(e); }}

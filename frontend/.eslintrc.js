@@ -22,6 +22,11 @@ module.exports = {
     'comma-dangle': [2, 'never'],
     'linebreak-style': 0,
     'global-require': 0,
-    'eslint linebreak-style': [0, 'error', 'windows']
+    'eslint linebreak-style': [0, 'error', 'windows'],
+    'jsx-a11y/label-has-associated-control': [2, {
+      labelComponents: ['label'],
+      labelAttributes: ['htmlFor'],
+      controlComponents: ['input']
+    }]
   }
 };

@@ -1,29 +1,27 @@
 .users{
     background-color: #040c17;
-
-    
-
-    
-    min-height: 100vh;
+    height: calc(100vh - 50px);
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    
-    
+
     .list{
-        
+        padding: 5px;
+        width: 400px;
         border: solid 2px whitesmoke;
         margin-right: 5vw;
         
         .immersion{
             border: solid 1px whitesmoke;
             list-style: none;
+            margin-bottom: 5px;
         }
     }
 
-    .form{
-        width: 300px;
+    .form{    
+        padding: 5px;
+        width: 400px;
         border: solid 2px whitesmoke;
         display: flex;
         flex-direction: column;
