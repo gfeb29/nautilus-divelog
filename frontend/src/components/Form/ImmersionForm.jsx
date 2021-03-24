@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import {
   loadImmersions, createImmersion, saveImmersion, deleteImmersion
 } from '../../redux/actions/immersionActions';
+import Header from '../Header/Header';
 import './ImmersionForm.css';
 
 // eslint-disable-next-line react/prop-types
@@ -145,98 +146,100 @@ function ImmersionForm({ actions, immersionHistory }) {
   };
 
   return (
-    <div className="users">
-      <div className="list">
-        <h2>Listado de Immersiones</h2>
+    <>
+      <Header />
+      <div className="users">
+        <div className="list">
+          <h2>Listado de Immersiones</h2>
 
-        {immersionHistory && immersionHistory.map((immersion) => (
-          <div key={Math.random()}>
-            <ul className="immersion">
-              <h4>{immersion?.location}</h4>
-              <li>
-                <p>nº inm.</p>
-                <div><span>{immersion?.immersionNumber}</span></div>
-                <button onClick={() => { FirstEdit(immersion); }} className="" type="button">Editar</button>
-                <button onClick={() => { actions.deleteImmersion(immersion._id); }} className="" type="button">Borrar</button>
+          {immersionHistory && immersionHistory.map((immersion) => (
+            <div key={Math.random()}>
+              <ul className="immersion">
+                <h4>{immersion?.location}</h4>
+                <li>
+                  <p>nº inm.</p>
+                  <div><span>{immersion?.immersionNumber}</span></div>
+                  <button onClick={() => { FirstEdit(immersion); }} className="" type="button">Editar</button>
+                  <button onClick={() => { actions.deleteImmersion(immersion._id); }} className="" type="button">Borrar</button>
 
-              </li>
+                </li>
 
-            </ul>
-          </div>
-        ))}
+              </ul>
+            </div>
+          ))}
 
-      </div>
-      <div className="form">
-        <h2>Formulario de Immersiones</h2>
-        {
+        </div>
+        <div className="form">
+          <h2>Formulario de Immersiones</h2>
+          {
             failure ? (<span>{error}</span>) : (<span />)
         }
-        <form className="form-group">
-          <input
-            onChange={(e) => { setName(e.target.value); }}
-            className="form-control"
-            type="text"
-            placeholder="name"
-            contentEditable={false}
-            value={name}
-          />
-          <input
-            onChange={(e) => { setLocation(e.target.value); }}
-            className="form-control"
-            type="text"
-            placeholder="Location"
-            value={location}
-          />
-          <input
-            onChange={(e) => { setDate(e.target.value); }}
-            className="form-control"
-            type="date"
-            placeholder="date"
-            value={date}
-          />
-          <input
-            onChange={(e) => { setTime(e.target.value); }}
-            className="form-control"
-            type="time"
-            placeholder="Time"
-            value={time}
-          />
-          <input
-            onChange={(e) => { setMaxDepth(e.target.value); }}
-            className="form-control"
-            type="number"
-            placeholder="Max. depth"
-            value={maxDepth}
-          />
-          <input
-            onChange={(e) => { setDuration(e.target.value); }}
-            className="form-control"
-            type="number"
-            placeholder="Duration"
-            value={duration}
-          />
-          <input
-            onChange={(e) => { setMinimalTemperature(e.target.value); }}
-            className="form-control"
-            type="number"
-            placeholder="Minimal Temperature"
-            value={minimalTemperature}
-          />
-          <input
-            onChange={(e) => { setImmersionNumber(e.target.value); }}
-            className="form-control"
-            type="number"
-            placeholder="Immersion Number"
-            value={immersionNumber}
-          />
-          <input
-            onChange={(e) => { setDepthsByTime(e.target.value); }}
-            className="form-control"
-            type="number"
-            placeholder="Depths by time"
-            value={depthsByTime}
-          />
-          {
+          <form className="form-group">
+            <input
+              onChange={(e) => { setName(e.target.value); }}
+              className="form-control"
+              type="text"
+              placeholder="name"
+              contentEditable={false}
+              value={name}
+            />
+            <input
+              onChange={(e) => { setLocation(e.target.value); }}
+              className="form-control"
+              type="text"
+              placeholder="Location"
+              value={location}
+            />
+            <input
+              onChange={(e) => { setDate(e.target.value); }}
+              className="form-control"
+              type="date"
+              placeholder="date"
+              value={date}
+            />
+            <input
+              onChange={(e) => { setTime(e.target.value); }}
+              className="form-control"
+              type="time"
+              placeholder="Time"
+              value={time}
+            />
+            <input
+              onChange={(e) => { setMaxDepth(e.target.value); }}
+              className="form-control"
+              type="number"
+              placeholder="Max. depth"
+              value={maxDepth}
+            />
+            <input
+              onChange={(e) => { setDuration(e.target.value); }}
+              className="form-control"
+              type="number"
+              placeholder="Duration"
+              value={duration}
+            />
+            <input
+              onChange={(e) => { setMinimalTemperature(e.target.value); }}
+              className="form-control"
+              type="number"
+              placeholder="Minimal Temperature"
+              value={minimalTemperature}
+            />
+            <input
+              onChange={(e) => { setImmersionNumber(e.target.value); }}
+              className="form-control"
+              type="number"
+              placeholder="Immersion Number"
+              value={immersionNumber}
+            />
+            <input
+              onChange={(e) => { setDepthsByTime(e.target.value); }}
+              className="form-control"
+              type="number"
+              placeholder="Depths by time"
+              value={depthsByTime}
+            />
+            {
               edit ? (
                 <button
                   onClick={(e) => { FinalEdit(e); }}
@@ -257,10 +260,11 @@ function ImmersionForm({ actions, immersionHistory }) {
                 </button>
               )
           }
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
 
+    </>
   );
 }
 

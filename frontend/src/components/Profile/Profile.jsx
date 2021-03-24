@@ -26,20 +26,34 @@ function Profile({ user, action }) {
       <Header />
       {
       user && (
-      <section className="profile">
-        <div className="user">
-          <div>
-            <img className="photo_user" src={user.photoURL} alt={user.displayName} />
+        <div className="profile">
+          <main className="profile-user">
+            <div className="user">
+              <img src={user.photoURL} alt={user.displayName} className="user-picture" />
+              <h1>{user.displayName}</h1>
+              <h2>{user.email}</h2>
 
-            <p>{user.displayName}</p>
-            <p>{user.email}</p>
-          </div>
-          <button type="button" onClick={action.logoutAction}>Logout</button>
+              <button className="button-logout" type="button" onClick={action.logoutAction}>Logout</button>
 
+            </div>
+          </main>
         </div>
 
-      </section>
+      // <section className="profile">
+      //   <div className="user">
+      //     <div>
+      //       <img className="photo_user" src={user.photoURL} alt={user.displayName} />
+
+      //       <p>{user.displayName}</p>
+      //       <p>{user.email}</p>
+      //     </div>
+      //     <button type="button" onClick={action.logoutAction}>Logout</button>
+
+      //   </div>
+
+      // </section>
       )
+
     }
 
     </>

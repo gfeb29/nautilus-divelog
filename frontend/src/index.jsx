@@ -10,6 +10,7 @@ import Navigation from './components/NavigationMenu/NavigationMenu';
 import ImmersionForm from './components/Form/ImmersionForm';
 import Profile from './components/Profile/Profile';
 import DiveChart from './components/DiveChart/DiveChart';
+import NotFound from './components/NotFound/NotFound';
 import './index.css';
 
 ReactDOM.render(
@@ -25,6 +26,7 @@ ReactDOM.render(
           <Route path="/logbook" component={LogBook} />
           <Route path="/navigation" component={Navigation} />
           <Route path="/" exact component={Dashboard} />
+          <Route component={NotFound} />
 
         </Switch>
 
