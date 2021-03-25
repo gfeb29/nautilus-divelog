@@ -16,16 +16,6 @@ function ImmersionForm({ actions, immersionHistory }) {
     actions.loadImmersions();
   }, [immersionHistory?.length]);
 
-  // const [id] = useState('');
-  // const [name, setName] = useState('');
-  // const [location, setLocation] = useState('');
-  // const [date, setDate] = useState('');
-  // const [time, setTime] = useState('');
-  // const [maxDepth, setMaxDepth] = useState('');
-  // const [duration, setDuration] = useState('');
-  // const [minimalTemperature, setMinimalTemperature] = useState('');
-  // const [immersionNumber, setImmersionNumber] = useState('');
-  // const [depthsByTime, setDepthsByTime] = useState('');
   const [failure, setFailure] = useState(false);
   const [error, setError] = useState('');
   const [edit, setEdit] = useState(false);
@@ -42,7 +32,7 @@ function ImmersionForm({ actions, immersionHistory }) {
     minimalTemperature: '',
     immersionNumber: '',
     depthsByTime: ''
-    // id
+
   };
 
   const onChangeHandler = (e) => {
@@ -103,29 +93,8 @@ function ImmersionForm({ actions, immersionHistory }) {
       return;
     }
 
-    // const user = {
-    //   id,
-    //   name,
-    //   location,
-    //   date,
-    //   time,
-    //   maxDepth,
-    //   duration,
-    //   minimalTemperature,
-    //   immersionNumber,
-    //   depthsByTime
-    // };
     actions.createImmersion(immersionObj);
     setImmersion({ ...defaultObject });
-    // setName('');
-    // setLocation('');
-    // setDate('');
-    // setTime('');
-    // setMaxDepth('');
-    // setDuration('');
-    // setMinimalTemperature('');
-    // setImmersionNumber('');
-    // setDepthsByTime('');
     setFailure(false);
   };
 
@@ -139,29 +108,10 @@ function ImmersionForm({ actions, immersionHistory }) {
 
   const FinalEdit = (e) => {
     e.preventDefault();
-    // const edited = {
-    //   name,
-    //   location,
-    //   date,
-    //   time,
-    //   maxDepth,
-    //   duration,
-    //   minimalTemperature,
-    //   immersionNumber,
-    //   depthsByTime,
-    //   id
-    // };
+
     actions.saveImmersion(immersionObj);
-    setEdit(false);
+    setEdit(true);
     setImmersion({});
-    // setName('');
-    // setLocation('');
-    // setDate('');
-    // setTime('');
-    // setMaxDepth('');
-    // setDuration('');
-    // setMinimalTemperature('');
-    // setImmersionNumber('');
   };
 
   return (
@@ -169,17 +119,23 @@ function ImmersionForm({ actions, immersionHistory }) {
       <Header />
       <div className="users">
         <div className="list">
-          <h2>Listado de Immersiones</h2>
+          <h2>Dive history</h2>
 
           {immersionHistory && immersionHistory.map((immersion) => (
             <div key={immersion._id}>
               <ul className="immersion">
                 <h4>{immersion?.location}</h4>
                 <li>
-                  <p>nº inm.</p>
-                  <div><span>{immersion?.immersionNumber}</span></div>
-                  <button onClick={() => { FirstEdit(immersion); }} className="" type="button">Editar</button>
-                  <button onClick={() => { actions.deleteImmersion(immersion._id); }} className="" type="button">Borrar</button>
+                  <p>
+                    nº inm:
+                    {' '}
+                    <span>{immersion?.immersionNumber}</span>
+                  </p>
+                  <div className="box_button">
+                    <button onClick={() => { FirstEdit(immersion); }} className="" type="button">Edit</button>
+
+                    <button onClick={() => { actions.deleteImmersion(immersion._id); }} className="" type="button">Delete</button>
+                  </div>
 
                 </li>
 
@@ -189,7 +145,7 @@ function ImmersionForm({ actions, immersionHistory }) {
 
         </div>
         <div className="form">
-          <h2>Formulario de Immersiones</h2>
+          <h2>Dive form</h2>
           {
             failure ? (<span>{error}</span>) : (<span />)
         }
@@ -234,7 +190,7 @@ function ImmersionForm({ actions, immersionHistory }) {
                     className="form-button"
                     type="submit"
                   >
-                    Editar
+                    Edit
 
                   </button>
                   <button
@@ -253,7 +209,7 @@ function ImmersionForm({ actions, immersionHistory }) {
                   className="form-button"
                   type="submit"
                 >
-                  Agregar
+                  Add Immersion
 
                 </button>
               )

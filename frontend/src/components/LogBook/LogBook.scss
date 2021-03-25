@@ -2,6 +2,7 @@
     background-color: #040c17;
     height: calc(100vh - 50px);
     color: blanchedalmond;
+    
 
     .history-box{
         border: solid 2px white;
@@ -13,6 +14,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            border: solid 2px white
         }
         .photo_user{
             width: 70%;

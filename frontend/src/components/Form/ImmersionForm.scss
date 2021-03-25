@@ -16,6 +16,14 @@
             border: solid 1px whitesmoke;
             list-style: none;
             margin-bottom: 5px;
+            display: flex;
+            flex-direction: column;
+            
+            button:hover{
+                background-color:#A0C5FA;
+                color: whitesmoke;
+                cursor: pointer;
+            }
         }
     }
 
@@ -23,16 +31,29 @@
         padding: 5px;
         width: 400px;
         border: solid 2px whitesmoke;
-        display: flex;
-        flex-direction: column;
-
+        // display: flex;
+        // flex-direction: column;
+        
         .form-group{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            
+            label {
+                grid-column: 1 / 2;
+            }
             input {
                 padding:7px;
                 border-radius: 5%;
+                grid-column: 2 / 3;
               }
             .form-control{
                 margin: 12px;
+            }
+            button:hover{
+                background-color:#A0C5FA;
+                color: whitesmoke;
+                cursor: pointer;
             }
         }
     }
