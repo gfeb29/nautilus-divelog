@@ -151,7 +151,7 @@ function ImmersionForm({ actions, immersionHistory }) {
         }
           <form className="form-group">
             <div>
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name">Dive buddy</label>
               <input className="form-control" type="text" placeholder="Name" name="name" id="name" value={immersionObj.name} onChange={onChangeHandler} />
             </div>
             <div>
