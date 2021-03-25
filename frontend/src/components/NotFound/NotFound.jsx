@@ -1,8 +1,8 @@
 import React from 'react';
 import pulpo from '../../img/pulpo.gif';
-import './construction.css';
+import './NotFound.css';
 
-function Construction() {
+function NotFound() {
   const [data, setData] = React.useState(null);
 
   React.useEffect(() => {
@@ -19,7 +19,8 @@ function Construction() {
         </p>
         <img src={pulpo} className="App-logo" alt="logo" />
         <p>
-          WEB UNDER CONSTRUCTION
+          404
+          Not found
         </p>
         <p>
           {!data ? 'Loading...' : data}
@@ -29,4 +30,4 @@ function Construction() {
   );
 }
 
-export default Construction;
+export default NotFound;

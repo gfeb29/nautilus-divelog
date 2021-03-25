@@ -1,5 +1,6 @@
 .logbook {
   background-color: #040c17;
+  height: calc(100vh - 50px);
   color: blanchedalmond;
 }
 
@@ -12,26 +13,42 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  height: 500px;
+  height: 400px;
+}
+
+.logbook .history-box .photo_box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: solid 2px white;
 }
 
 .logbook .history-box .photo_user {
-  width: 300px;
-  height: 200px;
-  left: 80px;
+  width: 70%;
   border-radius: 50%;
-  margin-top: 62px;
 }
 
 .logbook .history-box .history {
   border: solid 2px white;
-  width: 300px;
-  height: 300px;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .logbook .history-box .history .immersion {
   border: solid 2px white;
+  cursor: pointer;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.logbook .history-box .history .immersion .immersion_button {
+  width: 100vw;
+  color: black;
 }
 
 .logbook .history-box .selected-immersion {
@@ -40,5 +57,16 @@
 
 .logbook .logbook-chart {
   border: solid 2px white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.logbook .onethird {
+  width: 33%;
+  padding: 10px;
 }
 /*# sourceMappingURL=LogBook.css.map */

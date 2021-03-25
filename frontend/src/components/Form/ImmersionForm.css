@@ -1,26 +1,88 @@
 .users {
+  background-color: #040c17;
+  height: calc(100vh - 50px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: white;
 }
 
 .users .list {
-  width: 200px;
+  padding: 5px;
+  width: 400px;
+  border: solid 2px whitesmoke;
+  margin-right: 5vw;
 }
 
 .users .list .immersion {
-  border: solid 1px black;
+  border: solid 1px whitesmoke;
+  list-style: none;
+  margin-bottom: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.users .list .immersion button:hover {
+  background-color: #A0C5FA;
+  color: whitesmoke;
+  cursor: pointer;
 }
 
 .users .form {
-  width: 300px;
+  padding: 5px;
+  width: 400px;
+  border: solid 2px whitesmoke;
+}
+
+.users .form .form-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.users .form .form-group label {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1 / 2;
+}
+
+.users .form .form-group input {
+  padding: 7px;
+  border-radius: 5%;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2 / 3;
 }
 
 .users .form .form-group .form-control {
-  margin-bottom: 10px;
+  margin: 12px;
+}
+
+.users .form .form-group button:hover {
+  background-color: #A0C5FA;
+  color: whitesmoke;
+  cursor: pointer;
+}
+
+.users h2 {
+  margin-bottom: 20px;
 }
 /*# sourceMappingURL=ImmersionForm.css.map */

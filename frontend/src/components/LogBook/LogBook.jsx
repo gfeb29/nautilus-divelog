@@ -10,8 +10,6 @@ import DiveChart from '../DiveChart/DiveChart';
 import './LogBook.css';
 
 function LogBook({ actions, immersionHistory, immersion }) {
-  // const { locationId } = useParams(immersion);
-  // console.log(useParams());
   const { locationId } = useParams();
 
   useEffect(() => {
@@ -24,17 +22,7 @@ function LogBook({ actions, immersionHistory, immersion }) {
     } else if (immersionHistory) {
       actions.loadDive(immersionHistory[0]);
     }
-
-    // if (immersionHistory) {
-    //   actions.loadDive(immersionHistory[0]);
-    // }
   }, [immersionHistory]);
-
-  // if (locationId) {
-  //   useEffect(() => {
-  //     actions.loadDive(locationId);
-  //   }, [immersionHistory]);
-  // }
 
   return (
     <>
@@ -42,76 +30,78 @@ function LogBook({ actions, immersionHistory, immersion }) {
       <div className="logbook">
         <div>
           <div className="history-box">
-            <img className="photo_user" src={buceadorPerfil} alt="photo_user" />
-            <span>{locationId}</span>
-            <div className="selected-immersion">
-              <h3 className="diver">{(immersion?.name)}</h3>
+            <div className="onethird photo_box">
+              <img className="photo_user" src={buceadorPerfil} alt="photo_user" />
+            </div>
+            <div className="onethird selected-immersion">
+              <h3>Dive info</h3>
+              <br />
+              <div className="diver">
+                <b>Diver: </b>
+                {(immersion?.name)}
+              </div>
               <div>
-                Immersion Number:
+                <b>Immersion Number:</b>
                 {' '}
                 {(immersion?.immersionNumber)}
               </div>
               <div>
-                Location:
+                <b>Location:</b>
                 {' '}
                 {(immersion?.location)}
               </div>
               <div>
-                Date:
+                <b>Date:</b>
                 {' '}
                 {(immersion?.date)}
                 {' '}
-                --- Time:
+                <b>--- Time:</b>
                 {' '}
                 {(immersion?.time)}
                 h
               </div>
               <div>
-                Max deep:
+                <b>Max depth:</b>
                 {' '}
                 {(immersion?.maxDepth)}
                 {' '}
                 meters
               </div>
               <div>
-                Duration:
+                <b>Duration:</b>
                 {' '}
                 {(immersion?.duration)}
                 {' '}
                 min.
               </div>
               <div>
-                Minimal Temperature:
+                <b>Minimal Temperature:</b>
                 {' '}
                 {(immersion?.minimalTemperature)}
                 °C
               </div>
             </div>
-            <div className="history">
+            <div className="onethird history">
               <h3 className="immersions-title">Immersions</h3>
-              {immersionHistory && immersionHistory.map((selectedImmersion) => (
-                <div className="immersion" key={Math.random()}>
-                  <button type="button" onClick={() => { actions.loadDive(selectedImmersion); }}>
-                    <ul>
-                      <h4>{selectedImmersion?.location}</h4>
-                      <li>
-                        <p>nº inm.</p>
-                        <div>{selectedImmersion?.immersionNumber}</div>
-                      </li>
-                    </ul>
-                  </button>
+              {immersionHistory && immersionHistory.map((selectedImmersion, index) => (
+                <>
+                  <div className="immersion" role="button" tabIndex={index} aria-hidden="true" onClick={() => { actions.loadDive(selectedImmersion); }}>
+                    <h4>{selectedImmersion?.location}</h4>
+                    <div>
+                      nº inm.
+                      {selectedImmersion?.immersionNumber}
+                    </div>
+                    bla
+                  </div>
+                </>
 
-                </div>
               ))}
             </div>
           </div>
-
           <div className="logbook-chart">
             <DiveChart />
-
           </div>
         </div>
-
       </div>
     </>
   );
