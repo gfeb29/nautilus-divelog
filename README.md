@@ -1,6 +1,6 @@
 # eloy-final-project
 
-#Nautilus Dive Log
+Nautilus Dive Log
 "Es un cuaderno de buceo digital, con la intención de que pueda seguir desarrollandose y apliando con diferentes componentes a la vez que crece mi afición por el buceo."
 
 Functionalities
